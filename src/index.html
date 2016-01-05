@@ -7,8 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <section id="health-tracker-app">
+    <header id="header">
+      <h1>Health Tracker</h1>
+      <input id="food-search" placeholder="Enter a food name to search" autofocus>
+    </header>
 
-  <!-- jQuery, Underscore, Backbone -->
+    <section id="main">
+      <ul id="food-list"></ul>
+    </section>
+
+  </section>
+
+  <!-- jQuery, Underscore, Backbone, Backbone.LocalStorage -->
 
   <!--<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>-->
   <!--<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>-->
@@ -20,6 +31,9 @@
   <script src="js/lib/backbone.localStorage-min.js"></script>
 
   <!-- App -->
+  <script src="js/models/food-item.js"></script>
+  <script src="js/collections/food-items.js"></script>
+  <script src="js/views/app-view.js"></script>
   <script src="js/app.js"></script>
 
 </body>
