@@ -4,7 +4,7 @@ var app = app || {};
   'use strict';
 
   var FoodItems = Backbone.Collection.extend({
-    model: app.Todo,
+    model: app.FoodItem,
 
     localStorage: new Backbone.LocalStorage('food-items-backbone')
   });
