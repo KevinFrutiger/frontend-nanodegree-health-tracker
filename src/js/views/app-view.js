@@ -20,10 +20,10 @@ var app = app || {};
 
       this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
-      this.listenTo(app.foodItems, 'add', this.addOne);
+      this.listenTo(app.savedList, 'add', this.addOne);
       this.listenTo(app.eventBus, 'selectItem', this.selectItem);
 
-      app.foodItems.fetch();
+      app.savedList.fetch();
     },
 
     render: function() {
@@ -31,7 +31,7 @@ var app = app || {};
     },
 
     addOne: function(foodItem) {
-      console.log('added model to foodItems');
+      console.log('added model to savedList');
       var view = new app.FoodItemView({model: foodItem});
       this.$savedList.append(view.render().$el);
     },
@@ -97,7 +97,7 @@ var app = app || {};
     },
 
     selectItem: function(view) {
-      app.foodItems.create(app.searchList.remove(view.model));
+      app.savedList.create(app.searchList.remove(view.model));
 
       //this.$savedList.append(view.$el);
 
