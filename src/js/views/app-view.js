@@ -21,13 +21,14 @@ var app = app || {};
       this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addOne);
+      //this.listenTo(app.savedList, 'destroy', this.removeOne);
       this.listenTo(app.eventBus, 'selectItem', this.selectItem);
 
       app.savedList.fetch();
     },
 
     render: function() {
-      //console.log('render in app view');
+      //
     },
 
     addOne: function(foodItem) {
