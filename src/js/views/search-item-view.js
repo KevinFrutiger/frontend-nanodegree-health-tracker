@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.FoodItemView = Backbone.View.extend({
+  app.SearchItemView = Backbone.View.extend({
 
     tagName: 'li',
 

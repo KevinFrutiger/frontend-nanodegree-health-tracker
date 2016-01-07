@@ -32,7 +32,7 @@ var app = app || {};
 
     addOne: function(foodItem) {
       console.log('added model to savedList');
-      var view = new app.FoodItemView({model: foodItem});
+      var view = new app.SavedItemView({model: foodItem});
       this.$savedList.append(view.render().$el);
     },
 
@@ -92,7 +92,7 @@ var app = app || {};
     },
 
     addSearchItem: function(foodItem) {
-      var view = new app.FoodItemView({model: foodItem});
+      var view = new app.SearchItemView({model: foodItem});
       this.$searchList.append(view.render().$el);
     },
 
