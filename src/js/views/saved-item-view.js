@@ -5,9 +5,9 @@ var app = app || {};
 
   app.SavedItemView = Backbone.View.extend({
 
-    tagName: 'li',
+    tagName: 'tr',
 
-    template: _.template($('#food-item-template').html()),
+    template: _.template($('#saved-item-template').html()),
 
     events: {
       //

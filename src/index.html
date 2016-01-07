@@ -5,27 +5,45 @@
   <title>Health Tracker</title>
   <meta name="description" content="A nutrition calorie counter implementing Backbone.js">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+  <link href="css/styles.css" rel="stylesheet">
+
 </head>
 <body>
-  <section id="health-tracker-app">
-    <header id="header">
-      <h1>Health Tracker</h1>
-      <input id="search" placeholder="Enter a food name to search" autofocus>
-      <ul id="search-list"></ul>
-    </header>
+  <section id="health-tracker-app" class="container-fluid">
+    <div class="row">
+      <header id="header" class="col-sm-6">
+        <h1>Health Tracker</h1>
+        <div class="input-group">
+          <input id="search" type="text" class="form-control" placeholder="Enter a food name to search" aria-describedby="basic-addon1" autofocus>
+          <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        </div>
+        <button id="search-list-close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="list-group" id="search-list"></div>
 
-    <section id="main">
-      <h2>Today's calories</h2>
-      <p>Checking for stored food items for today...</p>
-      <ul id="saved-list"></ul>
-    </section>
+      </header>
+
+      <section id="main" class="col-sm-6">
+        <p>Checking for stored food items for today…</p>
+        <table class="table">
+          <thead><tr><td>Today's calories:</td><td class="calories">…</td><td></td></tr></thead>
+          <tbody id="saved-list"></tbody>
+        </table>
+      </section>
+    </div>
 
   </section>
 
-  <script type="text/templates" id="food-item-template">
-    <div class="view">
-      <div class="food-name"><%= name %></div>
-    </div>
+  <!-- Templates -->
+  <script type="text/templates" id="saved-item-template">
+    <td><%= name %></td><td class="calories"><%= calories.toFixed() %></td><td><button type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+  </script>
+
+  <script type="text/templates" id="search-item-template">
+    <h4 class="list-group-item-heading"><%= name %></h4>
   </script>
 
   <!-- jQuery, Underscore, Backbone, Backbone.LocalStorage -->

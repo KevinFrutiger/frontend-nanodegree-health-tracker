@@ -1,0 +1,7 @@
+#search-list-close {
+  display: none;
+}
+
+.table>tbody>tr>td.calories {
+  text-align: right;
+}

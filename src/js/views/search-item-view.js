@@ -5,9 +5,11 @@ var app = app || {};
 
   app.SearchItemView = Backbone.View.extend({
 
-    tagName: 'li',
+    tagName: 'button',
 
-    template: _.template($('#food-item-template').html()),
+    className: 'list-group-item',
+
+    template: _.template($('#search-item-template').html()),
 
     events: {
       'click': 'select'
