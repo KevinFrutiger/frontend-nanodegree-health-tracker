@@ -7,23 +7,26 @@ var app = app || {};
     el: '#health-tracker-app',
 
     events: {
-      'keypress #search': 'searchOnEnter'
+      'keypress #search-input': 'searchOnEnter'
     },
 
     initialize: function() {
       console.log('initializing the app view');
       this.$jqXHR = null;
 
-      this.$input = this.$('#search');
+      this.$searchInput = this.$('#search-input');
       this.$searchList = this.$('#search-list');
       this.$savedList = this.$('#saved-list');
       this.$calorieTotal = this.$('#calorie-total');
+      this.$status = this.$('#status');
 
       this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addOne);
       this.listenTo(app.savedList, 'update', this.render);
       this.listenTo(app.eventBus, 'selectItem', this.selectItem);
+
+      var self = this;
 
       app.savedList.fetch();
     },
@@ -33,19 +36,18 @@ var app = app || {};
     },
 
     addOne: function(foodItem) {
-      console.log('added model to savedList');
       var view = new app.SavedItemView({model: foodItem});
       this.$savedList.append(view.render().$el);
     },
 
     searchOnEnter: function(event) {
-      var value = this.$input.val().trim();
+      var value = this.$searchInput.val().trim();
 
       if (event.which === app.ENTER_KEY && value) {
         this.queryHealthAPI(value);
-        this.$input.val('');
-        this.$input.prop('placeholder', 'Searching...');
-        this.$input.prop('disabled', true);
+        this.$searchInput.val('');
+        this.$searchInput.prop('placeholder', 'Searching...');
+        this.$searchInput.prop('disabled', true);
       }
     },
 
@@ -66,31 +68,29 @@ var app = app || {};
                     })
                     .done(function(data, status, jqXHR) {
                       console.log('ajax is done');
+                      if (!data.hits) console.warn('no hits');
                       self.createSearchList(data.hits);
 
-                      self.$input.prop('disabled', false);
-                      self.$input.prop('placeholder', 'Enter a food name to search');
+                      self.$searchInput.prop('disabled', false);
+                      self.$searchInput.prop('placeholder',
+                                             'Enter a food name to search');
 
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                       console.log('ajax failed');
-                      self.$input.prop('disabled', false);
-                      self.$input.prop('placeholder',
+                      self.$searchInput.prop('disabled', false);
+                      self.$searchInput.prop('placeholder',
                                        'Oops, there was an error.');
                     });
     },
 
     createSearchList: function(results) {
-      console.log(results);
-
       for (var i = 0, len = results.length; i < len; i++) {
         app.searchList.add(new app.FoodItem({
             name: results[i].fields.item_name,
             calories: results[i].fields.nf_calories
         }));
       }
-
-      console.log(app.searchList);
     },
 
     addSearchItem: function(foodItem) {
@@ -108,7 +108,7 @@ var app = app || {};
       app.searchList.reset();
       this.$searchList.empty();
 
-      //this.$input.focus();
+      //this.$searchInput.focus();
     }
 
   });

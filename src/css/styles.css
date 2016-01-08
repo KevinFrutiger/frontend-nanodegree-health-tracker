@@ -23,19 +23,26 @@ body
 
 #main {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
 }
 
-#search {
+#search-list-container {
+  position: absolute;
+  width: 100%;
   z-index: 2;
+}
+
+#saved-list-container {
   width: 100%;
 }
 
-#saved {
-  width: 100%;
+.table >thead > tr > td {
+  font-weight: bold;
 }
 
 .table > tbody > tr > td.calories,
-.table > thead > tr > td.calories {
+.table > thead > tr > td {
   text-align: right;
 }

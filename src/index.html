@@ -17,20 +17,20 @@
     <header id="header">
       <h1>Health Tracker</h1>
       <div class="input-group">
-        <input id="search" class="form-control" placeholder="Enter a food name to search" aria-label="Food search input" autofocus>
-        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        <input id="search-input" class="form-control" placeholder="Search for food by name or brand" aria-label="Food search input" autofocus>
+        <span id="basic-addon1" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
       </div>
     </header>
 
     <section id="main">
-      <div id="search">
+      <div id="search-list-container">
         <button id="search-list-close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <div class="list-group" id="search-list"></div>
+        <div id="search-list" class="list-group"></div>
       </div>
-      <div id="saved">
-        <div id="status">Checking for stored food items for today…</div>
+      <div id="saved-list-container">
+        <h2>Today</h2>
         <table class="table">
-          <thead><tr><td>Today's calories:</td><td id="calorie-total" class="calories">…</td><td></td></tr></thead>
+          <thead><tr><td>Total calories:</td><td id="calorie-total" class="calories">…</td><td></td></tr></thead>
           <tbody id="saved-list"></tbody>
         </table>
       </div>
