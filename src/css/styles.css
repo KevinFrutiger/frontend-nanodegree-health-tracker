@@ -15,7 +15,6 @@ body
   #health-tracker-app {
     flex-direction: row;
   }
-
 }
 
 #search-list-close {
@@ -36,6 +35,7 @@ body
   width: 100%;
 }
 
-.table > tbody > tr > td.calories {
+.table > tbody > tr > td.calories,
+.table > thead > tr > td.calories {
   text-align: right;
 }

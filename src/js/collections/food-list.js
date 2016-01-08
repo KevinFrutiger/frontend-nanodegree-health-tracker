@@ -6,7 +6,13 @@ var app = app || {};
   var SavedList = Backbone.Collection.extend({
     model: app.FoodItem,
 
-    localStorage: new Backbone.LocalStorage('food-items-backbone')
+    localStorage: new Backbone.LocalStorage('food-items-backbone'),
+
+    getCalorieTotal: function() {
+      return this.reduce(function(total, model) {
+        return total + model.get('calories');
+      }, 0);
+    }
   });
 
   app.savedList = new SavedList();

@@ -24,8 +24,11 @@ var app = app || {};
     },
 
     removeMe: function() {
-      this.model.destroy();
-      this.remove();
+      var self = this;
+
+      this.model.destroy({success: function(model, response) {
+        self.remove();
+      }});
     }
 
   });

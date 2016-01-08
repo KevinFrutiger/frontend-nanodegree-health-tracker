@@ -17,18 +17,19 @@ var app = app || {};
       this.$input = this.$('#search');
       this.$searchList = this.$('#search-list');
       this.$savedList = this.$('#saved-list');
+      this.$calorieTotal = this.$('#calorie-total');
 
       this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addOne);
-      //this.listenTo(app.savedList, 'destroy', this.removeOne);
+      this.listenTo(app.savedList, 'update', this.render);
       this.listenTo(app.eventBus, 'selectItem', this.selectItem);
 
       app.savedList.fetch();
     },
 
     render: function() {
-      //
+      this.$calorieTotal.text(app.savedList.getCalorieTotal().toFixed());
     },
 
     addOne: function(foodItem) {
@@ -99,8 +100,6 @@ var app = app || {};
 
     selectItem: function(view) {
       app.savedList.create(app.searchList.remove(view.model));
-
-      //this.$savedList.append(view.$el);
 
       this.removeSearchList();
     },
