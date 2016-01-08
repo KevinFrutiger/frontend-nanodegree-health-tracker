@@ -8,7 +8,7 @@ var app = app || {};
     defaults: {
       name: '',
       calories: null,
-      date: function() { return new Date(); }
+      timestamp: null
     }
 
   });

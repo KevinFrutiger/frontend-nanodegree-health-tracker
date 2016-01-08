@@ -119,7 +119,9 @@ var app = app || {};
     },
 
     selectSearchItem: function(view) {
-      app.savedList.create(app.searchList.remove(view.model));
+      var model = app.searchList.remove(view.model);
+      model.set('timestamp', Date.now());
+      app.savedList.create(model);
 
       this.removeSearchList();
     },
