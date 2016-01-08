@@ -17,10 +17,6 @@ body
   }
 }
 
-#search-list-close {
-  display: none;
-}
-
 #main {
   height: 100%;
   overflow-x: hidden;
@@ -32,10 +28,23 @@ body
   position: absolute;
   width: 100%;
   z-index: 2;
+  display: none;
 }
 
 #saved-list-container {
   width: 100%;
+}
+
+.has-error .form-control::-webkit-input-placeholder { /* Chrome, Safari, Edge (alias) */
+  color: #C87878;
+}
+
+.has-error .form-control::-moz-placeholder { /* Firefox */
+  color: #C87878;
+}
+
+.has-error .form-control:-ms-input-placeholder { /* IE */
+  color: #C87878;
 }
 
 .table >thead > tr > td {

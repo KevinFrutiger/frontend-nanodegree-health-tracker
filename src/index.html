@@ -18,13 +18,15 @@
       <h1>Health Tracker</h1>
       <div class="input-group">
         <input id="search-input" class="form-control" placeholder="Search for food by name or brand" aria-label="Food search input" autofocus>
-        <span id="basic-addon1" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        <span id="basic-addon1" class="input-group-btn">
+          <button id="search-btn" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+        </span>
       </div>
     </header>
 
     <section id="main">
       <div id="search-list-container">
-        <button id="search-list-close" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button id="search-list-close-btn" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div id="search-list" class="list-group"></div>
       </div>
       <div id="saved-list-container">
@@ -39,7 +41,7 @@
 
   <!-- Templates -->
   <script type="text/templates" id="saved-item-template">
-    <td><%= name %></td><td class="calories"><%= calories.toFixed() %></td><td><button type="button" id="remove" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+    <td><%= name %></td><td class="calories"><%= calories.toFixed() %></td><td><button id="remove" type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
   </script>
 
   <script type="text/templates" id="search-item-template">

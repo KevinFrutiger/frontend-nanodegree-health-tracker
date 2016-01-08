@@ -7,7 +7,10 @@ var app = app || {};
     el: '#health-tracker-app',
 
     events: {
-      'keypress #search-input': 'searchOnEnter'
+      'keypress #search-input': 'searchOnUserInput',
+      'focus #search-input': 'resetInput',
+      'click #search-btn': 'searchOnUserInput',
+      'click #search-list-close-btn': 'removeSearchList'
     },
 
     initialize: function() {
@@ -16,17 +19,17 @@ var app = app || {};
 
       this.$searchInput = this.$('#search-input');
       this.$searchList = this.$('#search-list');
+      this.$searchListContainer = this.$('#search-list-container');
       this.$savedList = this.$('#saved-list');
       this.$calorieTotal = this.$('#calorie-total');
       this.$status = this.$('#status');
 
       this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
-      this.listenTo(app.savedList, 'add', this.addOne);
+      this.listenTo(app.searchList, 'update', this.showSearchList);
+      this.listenTo(app.savedList, 'add', this.addSavedItem);
       this.listenTo(app.savedList, 'update', this.render);
-      this.listenTo(app.eventBus, 'selectItem', this.selectItem);
-
-      var self = this;
+      this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
       app.savedList.fetch();
     },
@@ -35,20 +38,31 @@ var app = app || {};
       this.$calorieTotal.text(app.savedList.getCalorieTotal().toFixed());
     },
 
-    addOne: function(foodItem) {
+    addSavedItem: function(foodItem) {
       var view = new app.SavedItemView({model: foodItem});
-      this.$savedList.append(view.render().$el);
+      var $el = view.render().$el;
+
+      $el.hide();
+      this.$savedList.append($el);
+      $el.show(300);
     },
 
-    searchOnEnter: function(event) {
+    searchOnUserInput: function(event) {
       var value = this.$searchInput.val().trim();
 
-      if (event.which === app.ENTER_KEY && value) {
+      if (value && (event.which === app.ENTER_KEY || event.type === 'click')) {
         this.queryHealthAPI(value);
         this.$searchInput.val('');
         this.$searchInput.prop('placeholder', 'Searching...');
         this.$searchInput.prop('disabled', true);
+      } else if (event.type === 'click') {
+        this.$searchInput.parent().addClass('has-error');
+        this.$searchInput.prop('placeholder', 'Please enter food by name or brand');
       }
+    },
+
+    resetInput: function(event) {
+      this.$searchInput.parent().removeClass('has-error');
     },
 
     queryHealthAPI: function(value) {
@@ -98,7 +112,13 @@ var app = app || {};
       this.$searchList.append(view.render().$el);
     },
 
-    selectItem: function(view) {
+    showSearchList: function() {
+      if (this.$searchListContainer.css('display') === 'none') {
+        this.$searchListContainer.show();
+      }
+    },
+
+    selectSearchItem: function(view) {
       app.savedList.create(app.searchList.remove(view.model));
 
       this.removeSearchList();
@@ -107,8 +127,7 @@ var app = app || {};
     removeSearchList: function() {
       app.searchList.reset();
       this.$searchList.empty();
-
-      //this.$searchInput.focus();
+      this.$searchListContainer.hide();
     }
 
   });

@@ -26,7 +26,7 @@ var app = app || {};
     },
 
     select: function() {
-      app.eventBus.trigger('selectItem', this);
+      app.eventBus.trigger('selectSearchItem', this);
     }
 
   });

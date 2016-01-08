@@ -27,7 +27,7 @@ var app = app || {};
       var self = this;
 
       this.model.destroy({success: function(model, response) {
-        self.remove();
+          self.remove();
       }});
     }
 
