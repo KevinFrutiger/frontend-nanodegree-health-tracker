@@ -24,9 +24,7 @@ var app = app || {};
       this.$calorieTotal = this.$('#calorie-total');
       this.$status = this.$('#status');
 
-      this.listenTo(app.searchList, 'add', this.addSearchItem);
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
-      this.listenTo(app.searchList, 'update', this.showSearchList);
       this.listenTo(app.savedList, 'add', this.addSavedItem);
       this.listenTo(app.savedList, 'update', this.render);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
@@ -98,14 +96,11 @@ var app = app || {};
 
     createSearchList: function(results) {
 
-      app.searchList.comparator = 'serving_size_qty';
+      app.searchList.comparator = 'brand';
 
       for (var i = 0, len = results.length; i < len; i++) {
         var fields = results[i].fields;
 
-        // Class note: I could just send the fields object
-        // and Backbone would populate the model, but doing it this way
-        // de-couples the Model and other views from the API.
         app.searchList.add(new app.FoodItem({
             name: fields.item_name,
             brand: fields.brand_name,
@@ -114,17 +109,23 @@ var app = app || {};
             serving_size_unit: fields.nf_serving_size_unit
         }));
       }
-    },
 
-    addSearchItem: function(foodItem) {
-      var view = new app.SearchItemView({model: foodItem});
-      this.$searchList.append(view.render().$el);
+      this.showSearchList();
+
     },
 
     showSearchList: function() {
+      _.each(app.searchList.models, this.addSearchItemView, this);
+
       if (this.$searchListContainer.css('display') === 'none') {
         this.$searchListContainer.show();
       }
+    },
+
+    addSearchItemView: function(foodItem) {
+      console.log(foodItem);
+      var view = new app.SearchItemView({model: foodItem});
+      this.$searchList.append(view.render().$el);
     },
 
     selectSearchItem: function(view) {
