@@ -97,17 +97,21 @@ var app = app || {};
     },
 
     createSearchList: function(results) {
+
+      app.searchList.comparator = 'serving_size_qty';
+
       for (var i = 0, len = results.length; i < len; i++) {
         var fields = results[i].fields;
 
-        app.searchList.comparator = 'brand_name';
-
+        // Class note: I could just send the fields object
+        // and Backbone would populate the model, but doing it this way
+        // de-couples the Model and other views from the API.
         app.searchList.add(new app.FoodItem({
             name: fields.item_name,
             brand: fields.brand_name,
             calories: fields.nf_calories,
-            serving_size: fields.nf_serving_size_qty,
-            serving_unit: fields.nf_serving_size_unit
+            serving_size_qty: fields.nf_serving_size_qty,
+            serving_size_unit: fields.nf_serving_size_unit
         }));
       }
     },
