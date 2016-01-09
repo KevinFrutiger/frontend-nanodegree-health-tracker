@@ -35,6 +35,14 @@ body
   width: 100%;
 }
 
+.brand-name {
+  font-style: italic;
+}
+
+.food-name {
+  /*font-weight: bold;*/
+}
+
 .table >thead > tr > td {
   font-weight: bold;
 }

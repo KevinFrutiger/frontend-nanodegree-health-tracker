@@ -42,11 +42,11 @@
 
   <!-- Templates -->
   <script type="text/templates" id="saved-item-template">
-    <td><%= name %></td><td class="calories"><%= calories.toFixed() %></td><td><button id="remove" type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span><br>(<% (serving_size) ? print('<span class="serving-size">' + serving_size + '</span> <span class="serving-unit">' + serving_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td><button id="remove" type="button" class="close" aria-label="Close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
   </script>
 
   <script type="text/templates" id="search-item-template">
-    <h4 class="list-group-item-heading"><%= name %></h4>
+    <p><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span></p><p><% (serving_size) ? print('<span class="serving-size">' + serving_size + '</span> <span class="serving-unit">' + serving_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %></p>
   </script>
 
   <!-- jQuery, Underscore, Backbone, Backbone.LocalStorage -->

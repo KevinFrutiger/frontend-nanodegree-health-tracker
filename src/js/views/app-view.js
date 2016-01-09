@@ -75,9 +75,7 @@ var app = app || {};
                           appId: '30fc0f57',
                           appKey: '847b2a751b496a8e6e8c3a2d4f5bc20d',
                           results: '0:20',
-                          fields: 'item_name,brand_name,item_id,brand_id,' +
-                                  'nf_calories,nf_serving_size_qty,'+
-                                  'nf_serving_size_unit'
+                          fields: '*'
                         }
                     })
                     .done(function(data, status, jqXHR) {
@@ -100,9 +98,16 @@ var app = app || {};
 
     createSearchList: function(results) {
       for (var i = 0, len = results.length; i < len; i++) {
+        var fields = results[i].fields;
+
+        app.searchList.comparator = 'brand_name';
+
         app.searchList.add(new app.FoodItem({
-            name: results[i].fields.item_name,
-            calories: results[i].fields.nf_calories
+            name: fields.item_name,
+            brand: fields.brand_name,
+            calories: fields.nf_calories,
+            serving_size: fields.nf_serving_size_qty,
+            serving_unit: fields.nf_serving_size_unit
         }));
       }
     },
