@@ -25,7 +25,7 @@ var app = app || {};
       this.$status = this.$('#status');
 
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
-      this.listenTo(app.savedList, 'add', this.addSavedItem);
+      this.listenTo(app.savedList, 'add', this.addSavedItemView);
       this.listenTo(app.savedList, 'update', this.render);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
@@ -36,7 +36,7 @@ var app = app || {};
       this.$calorieTotal.text(app.savedList.getCalorieTotal().toFixed());
     },
 
-    addSavedItem: function(foodItem) {
+    addSavedItemView: function(foodItem) {
       var view = new app.SavedItemView({model: foodItem});
       var $el = view.render().$el;
 
