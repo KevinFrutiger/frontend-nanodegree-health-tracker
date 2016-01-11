@@ -29,10 +29,23 @@ body
   width: 100%;
   z-index: 2;
   display: none;
+  background: #fff;
 }
 
 #saved-list-container {
   width: 100%;
+}
+
+.close-list {
+  border-radius: 4px 4px 0 0;
+  border: none;
+  color: #8c8c8c;
+  margin-top: 10px;
+  width: 100%;
+
+  /* To match Bootstrap's close button. */
+  font-size: 21px;
+  font-weight: 700;
 }
 
 .brand-name {

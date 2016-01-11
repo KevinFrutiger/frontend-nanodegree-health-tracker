@@ -130,7 +130,6 @@ var app = app || {};
     },
 
     addSearchItemView: function(foodItem) {
-      console.log(foodItem);
       var view = new app.SearchItemView({model: foodItem});
       this.$searchList.append(view.render().$el);
     },
