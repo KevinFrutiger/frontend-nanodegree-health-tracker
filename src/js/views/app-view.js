@@ -8,7 +8,7 @@ var app = app || {};
 
     events: {
       'keypress #search-input': 'searchOnUserInput',
-      'focus #search-input': 'resetInput',
+      'focus #search-input': 'resetInputFeedback',
       'click #search-btn': 'searchOnUserInput',
       'click #search-list-close-btn': 'removeSearchList'
     },
@@ -46,20 +46,27 @@ var app = app || {};
     },
 
     searchOnUserInput: function(event) {
-      var value = this.$searchInput.val().trim();
+      if (event.which === app.ENTER_KEY || event.type === 'click') {
+        var value = this.$searchInput.val().trim();
 
-      if (value && (event.which === app.ENTER_KEY || event.type === 'click')) {
-        this.queryHealthAPI(value);
-        this.$searchInput.val('');
-        this.$searchInput.prop('placeholder', 'Searching...');
-        this.$searchInput.prop('disabled', true);
-      } else if (event.type === 'click') {
-        this.$searchInput.parent().addClass('has-error');
-        this.$searchInput.prop('placeholder', 'Please enter food by name or brand');
+        if (value) {
+          this.removeSearchList();
+
+          this.queryHealthAPI(value);
+          this.$searchInput.val('');
+          this.$searchInput.prop('placeholder', 'Searching...');
+          this.$searchInput.prop('disabled', true);
+        } else {
+          this.$searchInput.parent().addClass('has-error');
+          this.$searchInput.prop('placeholder',
+                                 'Please enter food by name or brand');
+        }
+      } else {
+        this.resetInputFeedback();
       }
     },
 
-    resetInput: function(event) {
+    resetInputFeedback: function(event) {
       this.$searchInput.parent().removeClass('has-error');
     },
 
@@ -79,8 +86,8 @@ var app = app || {};
                     .done(function(data, status, jqXHR) {
                       console.log('ajax is done');
                       if (!data.hits) console.warn('no hits');
-                      self.createSearchList(data.hits);
 
+                      self.createSearchList(data.hits);
                       self.$searchInput.prop('disabled', false);
                       self.$searchInput.prop('placeholder',
                                              'Enter a food name to search');
@@ -89,13 +96,13 @@ var app = app || {};
                     .fail(function(jqXHR, textStatus, errorThrown) {
                       console.log('ajax failed');
                       self.$searchInput.prop('disabled', false);
+                      self.$searchInput.parent().addClass('has-error');
                       self.$searchInput.prop('placeholder',
-                                       'Oops, there was an error.');
+                                            'Oops. There was a network error.');
                     });
     },
 
     createSearchList: function(results) {
-
       app.searchList.comparator = 'brand';
 
       for (var i = 0, len = results.length; i < len; i++) {
