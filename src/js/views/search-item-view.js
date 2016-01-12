@@ -12,7 +12,8 @@ var app = app || {};
     template: _.template($('#search-item-template').html()),
 
     events: {
-      'click': 'select'
+      'click': 'select',
+      'keypress': 'select'
     },
 
     initialize: function() {
@@ -20,14 +21,18 @@ var app = app || {};
     },
 
     render: function() {
-      //console.log(this.model.attributes);
+      // Allow keyboard users to focus the el in document order.
+      this.$el.prop('tabindex', '0');
+
       this.$el.html(this.template(this.model.attributes));
 
       return this;
     },
 
-    select: function() {
-      app.eventBus.trigger('selectSearchItem', this);
+    select: function(event) {
+      if (event.type === 'click' || event.which === app.ENTER_KEY) {
+        app.eventBus.trigger('selectSearchItem', this);
+      }
     }
 
   });
