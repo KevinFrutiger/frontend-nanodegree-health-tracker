@@ -14,6 +14,8 @@ var app = app || {};
     },
 
     initialize: function() {
+      var self = this;
+
       console.log('initializing the app view');
       this.$jqXHR = null;
 
@@ -27,22 +29,50 @@ var app = app || {};
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addSavedItemView);
       this.listenTo(app.savedList, 'update', this.render);
+      this.listenTo(app.savedList, 'reset', this.render);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
-      app.savedList.fetch();
+      this.fetching = true;
+
+      app.savedList.fetch({success: function() {
+                              self.fetching = false;
+                              self.filterTodaysItems();
+                            }
+                          });
     },
 
     render: function() {
       this.$calorieTotal.text(app.savedList.getCalorieTotal().toFixed());
     },
 
-    addSavedItemView: function(foodItem) {
-      var view = new app.SavedItemView({model: foodItem});
-      var $el = view.render().$el;
+    filterTodaysItems: function() {
 
-      $el.hide();
-      this.$savedList.append($el);
-      $el.show(300);
+      console.log(app.savedList);
+
+      var todaysModels = _.filter(app.savedList.models, function(model) {
+        var date = new Date(model.get('timestamp')).setHours(0, 0, 0, 0);
+        var today = new Date().setHours(0, 0, 0, 0);
+
+        return date == today;
+
+      });
+
+      app.savedList.reset(todaysModels);
+
+      console.log(app.savedList);
+
+      _.each(todaysModels, this.addSavedItemView, this);
+    },
+
+    addSavedItemView: function(foodItem) {
+      if (!this.fetching) {
+        var view = new app.SavedItemView({model: foodItem});
+        var $el = view.render().$el;
+
+        $el.hide();
+        this.$savedList.append($el);
+        $el.show(300);
+      }
     },
 
     searchOnUserInput: function(event) {
