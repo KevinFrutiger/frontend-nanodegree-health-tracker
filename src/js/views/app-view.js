@@ -14,9 +14,7 @@ var app = app || {};
     },
 
     initialize: function() {
-      var self = this;
 
-      console.log('initializing the app view');
       this.$jqXHR = null;
 
       this.$searchInput = this.$('#search-input');
@@ -24,7 +22,6 @@ var app = app || {};
       this.$searchListContainer = this.$('#search-list-container');
       this.$savedList = this.$('#saved-list');
       this.$calorieTotal = this.$('#calorie-total');
-      this.$status = this.$('#status');
 
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addSavedItemView);
@@ -32,6 +29,7 @@ var app = app || {};
       this.listenTo(app.savedList, 'reset', this.render);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
+      var self = this;
       this.fetching = true;
 
       app.savedList.fetch({success: function() {
@@ -47,8 +45,6 @@ var app = app || {};
 
     filterTodaysItems: function() {
 
-      console.log(app.savedList);
-
       var todaysModels = _.filter(app.savedList.models, function(model) {
         var date = new Date(model.get('timestamp')).setHours(0, 0, 0, 0);
         var today = new Date().setHours(0, 0, 0, 0);
@@ -58,8 +54,6 @@ var app = app || {};
       });
 
       app.savedList.reset(todaysModels);
-
-      console.log(app.savedList);
 
       _.each(todaysModels, this.addSavedItemView, this);
     },
