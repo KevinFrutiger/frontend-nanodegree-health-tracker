@@ -24,7 +24,7 @@
 
     <section id="main">
       <div id="search-list-container">
-        <button id="search-list-close-btn" type="button" class="close-list" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button id="search-list-close-btn" type="button" class="close-list" aria-label="Close search list"><span aria-hidden="true">&times;</span></button>
         <ul id="search-list"></ul>
       </div>
       <div id="saved-list-container">
@@ -39,7 +39,7 @@
 
   <!-- Templates -->
   <script type="text/templates" id="saved-item-template">
-    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button id="remove" type="button" class="remove-item" aria-label="Close">&times;</button></td>
+    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button id="remove" type="button" class="remove-item" aria-label="Remove food item">&times;</button></td>
   </script>
 
   <script type="text/templates" id="search-item-template">
