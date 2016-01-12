@@ -34,6 +34,7 @@ var app = app || {};
       this.$searchList = this.$('#search-list');
       this.$searchListContainer = this.$('#search-list-container');
       this.$savedList = this.$('#saved-list');
+      this.$savedListContainer = this.$('#saved-list-container');
       this.$calorieTotal = this.$('#calorie-total');
 
       this.$searchInput.prop('placeholder', this.searchFeedbackStrings.DEFAULT);
@@ -150,6 +151,7 @@ var app = app || {};
                       console.log('ajax is done');
                       if (!data.hits) console.warn('no hits');
 
+                      self.$savedListContainer.hide();
                       self.createSearchList(data.hits);
 
                       // Reset the input field.
@@ -238,6 +240,8 @@ var app = app || {};
       app.searchList.reset();
       this.$searchList.empty();
       this.$searchListContainer.hide();
+
+      this.$savedListContainer.show();
     }
 
   });
