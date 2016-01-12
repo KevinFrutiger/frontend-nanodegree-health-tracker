@@ -3,6 +3,9 @@ var app = app || {};
 (function() {
   'use strict';
 
+  /**
+   * Creates a view for the entire app.
+   */
   app.AppView = Backbone.View.extend({
     el: '#health-tracker-app',
 
@@ -13,6 +16,9 @@ var app = app || {};
       'click #search-list-close-btn': 'removeSearchList'
     },
 
+    /**
+     * Initializes view
+     */
     initialize: function() {
 
       this.$jqXHR = null;
@@ -25,8 +31,8 @@ var app = app || {};
 
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addSavedItemView);
-      this.listenTo(app.savedList, 'update', this.render);
-      this.listenTo(app.savedList, 'reset', this.render);
+      this.listenTo(app.savedList, 'update', this.renderCalorieTotal);
+      this.listenTo(app.savedList, 'reset', this.renderCalorieTotal);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
       var self = this;
@@ -39,7 +45,10 @@ var app = app || {};
                           });
     },
 
-    render: function() {
+    /**
+     * Renders the calorie total.
+     */
+    renderCalorieTotal: function() {
       this.$calorieTotal.text(app.savedList.getCalorieTotal().toFixed());
     },
 
