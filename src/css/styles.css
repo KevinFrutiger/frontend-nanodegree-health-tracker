@@ -85,16 +85,6 @@ input:focus {
   margin: 0 auto;
 }
 
-@media screen and (min-width: 600px) {
-  #health-tracker-app {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .input-group {
-    min-width: 200px;
-  }
-}
 
 #header {
   margin: 0 10px;
@@ -106,6 +96,21 @@ input:focus {
   overflow-y: auto;
   position: relative;
   margin: 0 10px;
+}
+
+@media screen and (min-width: 600px) {
+  #health-tracker-app {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .input-group {
+    min-width: 200px;
+  }
+
+  #main {
+    min-width: 300px
+  }
 }
 
 #search-list-container {

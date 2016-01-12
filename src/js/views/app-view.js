@@ -151,8 +151,8 @@ var app = app || {};
                       console.log('ajax is done');
                       if (!data.hits) console.warn('no hits');
 
-                      self.$savedListContainer.hide();
                       self.createSearchList(data.hits);
+                      self.$savedListContainer.hide();
 
                       // Reset the input field.
                       self.$searchInput.prop('disabled', false);
