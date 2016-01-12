@@ -7,6 +7,8 @@ var app = app || {};
 
     tagName: 'tr',
 
+    className: 'saved-list-item',
+
     template: _.template($('#saved-item-template').html()),
 
     events: {
