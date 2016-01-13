@@ -61,16 +61,16 @@ module.exports = function(grunt) {
     //   }
     // },
 
-    imagemin: {
-      main: {
-        files: [{
-          expand: true,
-          cwd: 'src/images/',
-          src: ['**/*.{png,jpg,gif,svg}'],
-          dest: 'dist/images/'
-        }]
-      }
-    },
+    // imagemin: {
+    //   main: {
+    //     files: [{
+    //       expand: true,
+    //       cwd: 'src/images/',
+    //       src: ['**/*.{png,jpg,gif,svg}'],
+    //       dest: 'dist/images/'
+    //     }]
+    //   }
+    // },
 
     uglify: {
       options: {
@@ -141,6 +141,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-replace');
 
   //grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin', 'cssmin', 'imagemin', 'uglify', 'copy', 'replace', 'clean:inlinedcss']);
-  grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin', 'cssmin', 'imagemin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin', 'cssmin', 'uglify', 'copy']);
 
 };
