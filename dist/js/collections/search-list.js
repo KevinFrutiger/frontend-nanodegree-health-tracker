@@ -1,1 +1,0 @@
-var app=app||{};(function(){"use strict";var SearchList=Backbone.Collection.extend({model:app.FoodItem});app.searchList=new SearchList})();

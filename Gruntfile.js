@@ -7,10 +7,15 @@ module.exports = function(grunt) {
     clean: {
       build: {
         src: ['dist/*']
-      }//,
-      //inlinedcss: { // Used to clean out stylesheets that are now in <style>
-      //  src: ['deploy/css/style-small.css']
-      //}
+      },
+      // Remove the css folder since all CSS is now inlined.
+      inlinedcss: {
+        src: ['dist/css/']
+      },
+      // Remove the JS folder since all relative JS is now inlined.
+      inlinedjs: {
+        src: ['dist/js/']
+      }
     },
 
     htmlmin: {
@@ -42,35 +47,30 @@ module.exports = function(grunt) {
       }
     },
 
-    // replace: {
-    //   dist: {
-    //     options: {
-    //       patterns: [{
-    //         match: /<link rel=\"stylesheet\" href=\"css\/style-small.css\" media=\"screen and \(max-width: 800px\)\">/g,
-    //         replacement: '<style>@media screen and (max-width: 800px) {' +
-    //                      '<%= grunt.file.read("dist/css/style-small.css") %>' +
-    //                      '}</style>'
-    //       }]
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'dist/',
-    //       src: ['index.html'],
-    //       dest: 'dist/'
-    //     }]
-    //   }
-    // },
-
-    // imagemin: {
-    //   main: {
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'src/images/',
-    //       src: ['**/*.{png,jpg,gif,svg}'],
-    //       dest: 'dist/images/'
-    //     }]
-    //   }
-    // },
+    // Embed custom CSS, JS, and backbone.localStorage
+    replace: {
+      dist: {
+        options: {
+          patterns: [{ // CSS
+            match: /<link rel=\"stylesheet\" href=\"css\/styles.css\">/g,
+            replacement: '<style>' +
+                         '<%= grunt.file.read("dist/css/styles.css") %>' +
+                         '</style>'
+          },{ // JS (relative)
+            match: /<script src=\"(js\/[\w-\/.]+)\"><\/script>/g,
+            replacement: function(match, p1) {
+              return '<script>' + grunt.file.read('dist/' + p1) + '</script>';
+            }
+          }]
+        },
+        files: [{
+          expand: true,
+          cwd: 'dist/',
+          src: ['index.html'],
+          dest: 'dist/'
+        }]
+      }
+    },
 
     uglify: {
       options: {
@@ -140,7 +140,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-pagespeed');
   grunt.loadNpmTasks('grunt-replace');
 
-  //grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin', 'cssmin', 'imagemin', 'uglify', 'copy', 'replace', 'clean:inlinedcss']);
-  grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin', 'cssmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin',
+                               'cssmin', 'uglify', 'copy', 'replace',
+                               'clean:inlinedcss', 'clean:inlinedjs']);
 
 };
