@@ -28,33 +28,58 @@ p {
 }
 
 .api-attribution {
-  font-size: .6rem;
+  font-size: 0.6rem;
+}
+
+#health-tracker-app {
+  display: -webkit-flex; /* Safari 8 */
+  display: flex;
+  -webkit-flex-direction: column; /* Safari 8 */
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 750px;
+  padding: 0;
+  width: 100%;
+}
+
+#header {
+  margin: 0 10px;
+
+}
+
+#main {
+  height: 100%;
+  margin: 0 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
 }
 
 
 /* Search input */
 
+/* Derived from Bootstrap styling */
 input {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 0.875rem;
-  line-height: 1.42857143;
-  color: #555;
   background-color: #fff;
   background-image: none;
-  border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  color: #555;
+  display: block;
+  font-size: 0.875rem;
+  height: 34px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  width: 100%;
 }
 
 input:focus {
-  box-shadow: 0 0 14px rgba(69, 128, 128, 1);
+  border-color: #66afe9;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  outline: 0;
 }
 
 .has-error input {
@@ -78,7 +103,9 @@ input:focus {
 }
 
 .input-group {
+  display: -webkit-flex; /* Safari 8 */
   display: flex;
+  -webkit-justify-content: center; /* Safari 8 */
   justify-content: center;
   margin-top: 20px;
 }
@@ -88,27 +115,6 @@ input:focus {
   padding: 0;
 }
 
-#health-tracker-app {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  width: 100%;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-#header {
-  margin: 0 10px;
-}
-
-#main {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  margin: 0 10px;
-}
 
 
 /* Saved list */
@@ -123,16 +129,16 @@ input:focus {
 }
 
 .saved-list-table td {
-  padding: 8px 10px;
-  border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 8px 10px;
 }
 
 .saved-list-table th {
-  padding: 10px;
   border: none;
-  text-align: right;
   font-size: 1.4rem;
+  padding: 10px;
+  text-align: right;
 }
 
 .saved-list-table .calories {
@@ -140,13 +146,13 @@ input:focus {
 }
 
 .remove-item {
-  font-size: 40px;
   background: none;
   border: none;
-  width: 40px;
-  padding: 0;
-  font-weight: 700;
   color: #ddd;
+  font-size: 40px;
+  font-weight: 700;
+  padding: 0;
+  width: 40px;
 }
 
 td.remove-item-cell {
@@ -161,11 +167,11 @@ td.remove-item-cell {
 /* Search list */
 
 #search-list-container {
+  background: #fff;
+  display: none;
   position: absolute;
   width: 100%;
   z-index: 2;
-  display: none;
-  background: #fff;
 }
 
 #search-list {
@@ -177,7 +183,7 @@ td.remove-item-cell {
 .search-list-item {
   border: 1px solid #ddd;
   cursor: pointer;
-  font-size: .90rem;
+  font-size: 0.90rem;
   margin-bottom: -1px;
   padding: 10px;
 }
@@ -194,10 +200,10 @@ td.remove-item-cell {
   border-radius: 4px 4px 0 0;
   border: none;
   color: #8c8c8c;
-  margin-top: 10px;
-  width: 100%;
   font-size: 21px;
   font-weight: 700;
+  margin-top: 10px;
+  width: 100%;
 }
 
 
@@ -207,7 +213,9 @@ td.remove-item-cell {
 
 @media screen and (min-width: 600px) {
   #health-tracker-app {
+    -webkit-flex-direction: row;  /* Safari 8 */
     flex-direction: row;
+    -webkit-justify-content: center; /* Safari 8 */
     justify-content: center;
   }
 
@@ -215,7 +223,13 @@ td.remove-item-cell {
     min-width: 200px;
   }
 
+  #header {
+    -webkit-flex-basis: 40%; /* Safari 8 */
+    flex-basis: 40%;
+  }
+
   #main {
-    min-width: 300px
+    -webkit-flex-basis: 60%; /* Safari 8 */
+    flex-basis: 60%;
   }
 }
