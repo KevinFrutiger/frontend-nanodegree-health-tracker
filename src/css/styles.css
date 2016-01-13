@@ -31,6 +31,9 @@ p {
   font-size: .6rem;
 }
 
+
+/* Search input */
+
 input {
   display: block;
   width: 100%;
@@ -62,6 +65,18 @@ input:focus {
   box-shadow: 0 0 14px #a32929;
 }
 
+.has-error input::-webkit-input-placeholder { /* Chrome, Safari, Edge (alias) */
+  color: #c87878;
+}
+
+.has-error input::-moz-placeholder { /* Firefox */
+  color: #c87878;
+}
+
+.has-error input:-ms-input-placeholder { /* IE */
+  color: #c87878;
+}
+
 .input-group {
   display: flex;
   justify-content: center;
@@ -73,8 +88,6 @@ input:focus {
   padding: 0;
 }
 
-
-
 #health-tracker-app {
   height: 100%;
   display: flex;
@@ -84,7 +97,6 @@ input:focus {
   max-width: 650px;
   margin: 0 auto;
 }
-
 
 #header {
   margin: 0 10px;
@@ -98,28 +110,8 @@ input:focus {
   margin: 0 10px;
 }
 
-@media screen and (min-width: 600px) {
-  #health-tracker-app {
-    flex-direction: row;
-    justify-content: center;
-  }
 
-  .input-group {
-    min-width: 200px;
-  }
-
-  #main {
-    min-width: 300px
-  }
-}
-
-#search-list-container {
-  position: absolute;
-  width: 100%;
-  z-index: 2;
-  display: none;
-  background: #fff;
-}
+/* Saved list */
 
 #saved-list-container {
   width: 100%;
@@ -145,6 +137,35 @@ input:focus {
 
 .saved-list-table .calories {
   text-align: right;
+}
+
+.remove-item {
+  font-size: 40px;
+  background: none;
+  border: none;
+  width: 40px;
+  padding: 0;
+  font-weight: 700;
+  color: #ddd;
+}
+
+td.remove-item-cell {
+  vertical-align: middle;
+}
+
+.brand-name {
+  font-style: italic;
+}
+
+
+/* Search list */
+
+#search-list-container {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  display: none;
+  background: #fff;
 }
 
 #search-list {
@@ -179,36 +200,22 @@ input:focus {
   font-weight: 700;
 }
 
-.remove-item {
-  font-size: 40px;
-  background: none;
-  border: none;
-  width: 40px;
-  padding: 0;
-  font-weight: 700;
-  color: #ddd;
-}
 
-td.remove-item-cell {
-  vertical-align: middle;
-}
 
-.brand-name {
-  font-style: italic;
-}
 
-.food-name {
-  /*font-weight: bold;*/
-}
+/* Large screen overrides */
 
-.has-error input::-webkit-input-placeholder { /* Chrome, Safari, Edge (alias) */
-  color: #c87878;
-}
+@media screen and (min-width: 600px) {
+  #health-tracker-app {
+    flex-direction: row;
+    justify-content: center;
+  }
 
-.has-error input::-moz-placeholder { /* Firefox */
-  color: #c87878;
-}
+  .input-group {
+    min-width: 200px;
+  }
 
-.has-error input:-ms-input-placeholder { /* IE */
-  color: #c87878;
+  #main {
+    min-width: 300px
+  }
 }
