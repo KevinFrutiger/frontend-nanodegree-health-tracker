@@ -212,7 +212,3 @@ td.remove-item-cell {
 .has-error input:-ms-input-placeholder { /* IE */
   color: #c87878;
 }
-
-.has-error input:placeholder-shown { /* Standard, but vendor pseudo-elements override. */
-  color: #c87878;
-}
