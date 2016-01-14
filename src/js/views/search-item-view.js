@@ -3,6 +3,9 @@ var app = app || {};
 (function() {
   'use strict';
 
+  /**
+   * Creates a view for a food item that's on the search results list.
+   */
   app.SearchItemView = Backbone.View.extend({
 
     tagName: 'li',
@@ -21,7 +24,7 @@ var app = app || {};
     },
 
     render: function() {
-      // Allow keyboard users to focus the el in document order.
+      // Allow keyboard users to focus the el, in document order.
       this.$el.prop('tabindex', '0');
 
       this.$el.html(this.template(this.model.attributes));
@@ -29,8 +32,12 @@ var app = app || {};
       return this;
     },
 
+    /**
+     * Selects the item on user interaction.
+     */
     select: function(event) {
       if (event.type === 'click' || event.which === app.ENTER_KEY) {
+        // Notify the app that this item was selected.
         app.eventBus.trigger('selectSearchItem', this);
       }
     }

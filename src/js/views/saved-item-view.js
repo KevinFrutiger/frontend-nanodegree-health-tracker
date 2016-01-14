@@ -3,6 +3,9 @@ var app = app || {};
 (function() {
   'use strict';
 
+  /**
+   * Creates a view for a food item that's saved to LocalStorage.
+   */
   app.SavedItemView = Backbone.View.extend({
 
     tagName: 'tr',
@@ -25,9 +28,13 @@ var app = app || {};
       return this;
     },
 
+    /**
+     * Removes the view.
+     */
     removeMe: function() {
       var self = this;
 
+      // When model is confirmed destroyed, remove the view.
       this.model.destroy({success: function(model, response) {
           self.remove();
       }});
