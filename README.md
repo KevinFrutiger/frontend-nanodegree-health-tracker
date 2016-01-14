@@ -54,4 +54,4 @@ grunt build
 
 If you don't already know, the .htaccess file is a settings file for a server used in this case to enable compression and caching. It is not required to run the app.
 
-If for some reason you wish to play around with this, you'll need to register for your own [Nutritionix API](https://developer.nutritionix.com/docs/v1_1) key and replace the data properties in queryHealthAPI() located in src/js/views/app-view.js (approx. line 140).
+If for some reason you wish to play around with this, you'll need to register for your own [Nutritionix API](https://developer.nutritionix.com/docs/v1_1) key and replace the data properties in `queryHealthAPI()` located in `src/js/views/app-view.js` (approx. line 140).
