@@ -50,7 +50,7 @@ After the modules are installed, build the dist/ folder:
 
 ````shell
 grunt build
-````.
+````
 
 If you don't already know, the .htaccess file is a settings file for a server used in this case to enable compression and caching. It is not required to run the app.
 
