@@ -10,7 +10,7 @@ You can run the application [here](http://kevinfrutiger.github.io/frontend-nanod
 
 1. Download the .zip file using the **Download ZIP** button located in the GitHub UI (or clone the repository).
 2. Unzip the file
-3. Start an HTTP server, such as [http-server](https://www.npmjs.com/package/http-server)(requires NodeJS and NPM) or [MAMP](https://www.mamp.info/en/).
+3. Start an HTTP server, such as [http-server](https://www.npmjs.com/package/http-server) (requires NodeJS and NPM) or [MAMP](https://www.mamp.info/en/).
 3. Point your browser to the index.html in src/ or in dist/.
 
 **Running locally without a web server**
@@ -26,11 +26,11 @@ To start using the application:
   * You can search again while the search results list is open. The current resuts will be replaced by results from the new search.
   * The app currently only shows the first 20 results from the API in alphabetical order by brand.
 3. Click/tap an item to add it to your list.
-  * You can close the search results without selecting an item by using the "x" close button a the top of the search results.
+  * You can close the search results without selecting an item by using the close button (**×**) a the top of the search results.
 4. The item you selected will appear on your total calorie count list, and your total calories for today will update to include the new item.
-5. You can remove an item from your saved list by clicking the "x" remove button next to an item.
+5. You can remove an item from your saved list by clicking the remove button (**×**) next to an item.
 
-The app uses your browser's local storage to store selected food items. You can close your browser and open it at a later time and add more items to your existing list. The app only shows today's items, so if you open the app tomorrow, the list will be empty until you add more items. Note, however, that items from past days are still in your browser's storage.
+The app uses your browser's local storage to store selected food items. You can close your browser and open it at a later time to add more items to your existing list. The app only shows today's items, so if you open the app tomorrow, the list will be empty until you add more items. Note, however, that items from past days are still in your browser's storage.
 
 **Clearing saved data**
 
@@ -41,10 +41,16 @@ If you'd like to clear all the data stored by the app (including today's items),
 Files located in the src/ folder are the readable source files and you can run the app with those files directly. The file located in dist/ is the compacted version intended for serving. To refresh the dist/ files, you'll need to have **N**ode **P**ackage **M**anager (part of [NodeJS](https://nodejs.org/en/download/)) and [Grunt](http://gruntjs.com/).
 
 From the main directory (via command line), install the required packages:
-```npm install```
+
+````shell
+npm install
+````
 
 After the modules are installed, build the dist/ folder:
-```grunt build```.
+
+````shell
+grunt build
+````.
 
 If you don't already know, the .htaccess file is a settings file for a server used in this case to enable compression and caching. It is not required to run the app.
 
