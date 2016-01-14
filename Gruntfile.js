@@ -107,26 +107,7 @@ module.exports = function(grunt) {
     // Testing
 
     jshint: {
-      main: ['src/js/**.js']
-    },
-
-    pagespeed: {
-      options: {
-        nokey: true,
-        url: "https://kevinfrutiger.github.io/x/",
-        locale: "en_US",
-        threshold: 90
-      },
-      desktop: {
-        options: {
-          strategy: "desktop"
-        }
-      },
-      mobile: {
-        options: {
-          strategy: "mobile"
-        }
-      }
+      main: ['src/js/**/*.js','!src/js/lib/**']
     }
   });
 
@@ -137,7 +118,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-pagespeed');
   grunt.loadNpmTasks('grunt-replace');
 
   grunt.registerTask('build', ['jshint', 'clean:build', 'htmlmin',
