@@ -1,6 +1,10 @@
 # Health Tracker project
 
-This was an optional seventh project for the Udacity Front-End Nanodegree. The objective was to build an app that utilized Backbone and a health API to allow the user to count the day's calories.
+<a href="http://kevinfrutiger.github.io/frontend-nanodegree-health-tracker/" target="_blank">View the live app</a>
+
+(Note: Items selected are stored in your browser's Local Storage.)
+
+This was an optional seventh project for the _Front-End Web Developer Nanodegree_. The objective was to build an app that allowed a user to count their calories for the day, utilizing Backbone, a health API, and a storage mechanism.
 
 ## Running the application
 
@@ -11,7 +15,7 @@ You can run the application [here](http://kevinfrutiger.github.io/frontend-nanod
 1. Download the .zip file using the **Download ZIP** button located in the GitHub UI (or clone the repository).
 2. Unzip the file
 3. Start an HTTP server, such as [http-server](https://www.npmjs.com/package/http-server) (requires NodeJS and NPM) or [MAMP](https://www.mamp.info/en/).
-3. Point your browser to the index.html in src/ or in dist/.
+3. Point your browser to **index.html** in the **src** folder of the files that you just unzipped to run the non-minified files. Point your browser to **index.html** in the **deploy** folder to run the same files found on the live site.
 
 **Running locally without a web server**
 
@@ -38,7 +42,7 @@ If you'd like to clear all the data stored by the app (including today's items),
 
 ## Building the serving files ##
 
-Files located in the src/ folder are the readable source files and you can run the app with those files directly. The file located in dist/ is the compacted version intended for serving. To refresh the dist/ files, you'll need to have **N**ode **P**ackage **M**anager (part of [NodeJS](https://nodejs.org/en/download/)) and [Grunt](http://gruntjs.com/).
+Files located in the src/ folder are the readable source files and you can run the app with those files directly. The file located in dist/ is the compacted version intended for serving. To refresh the dist/ file, you'll need to have **N**ode **P**ackage **M**anager (part of [NodeJS](https://nodejs.org/en/download/)) and [Grunt](http://gruntjs.com/).
 
 From the main directory (via command line), install the required packages:
 
