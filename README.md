@@ -4,7 +4,7 @@
 
 (Note: Items selected are stored in your browser's Local Storage.)
 
-This was an optional seventh project for the _Front-End Web Developer Nanodegree_. The objective was to build an app that allowed a user to count their calories for the day, utilizing Backbone, a health API, and a storage mechanism.
+This was an optional seventh project for the _Front-End Web Developer Nanodegree_. The objective was to build an app that allowed a user to count their calories for the day, utilizing Backbone.js, a health API, and a storage mechanism.
 
 ## Running the application
 
