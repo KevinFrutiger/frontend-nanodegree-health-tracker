@@ -3,7 +3,7 @@ var app = app || {};
 app.ENTER_KEY = 13;
 
 $(function() {
-  'user strict';
+  'use strict';
 
   app.eventBus = _.extend(Backbone.Events);
 
