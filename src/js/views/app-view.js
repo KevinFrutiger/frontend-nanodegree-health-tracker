@@ -13,11 +13,11 @@ var app = app || {};
       'keypress #search-input': 'searchOnUserInput',
       'focus #search-input': 'resetInputFeedback',
       'click #search-btn': 'searchOnUserInput',
-      'click #search-list-close-btn': 'removeSearchList'
+      'click #search-list-close-btn': 'searchCloseButtonClick'
     },
 
     searchFeedbackStrings: {
-      DEFAULT: 'Search for food by name or brand',
+      DEFAULT: 'Enter name or brand',
       AJAX_IN_PROGRESS: 'Searching...',
       AJAX_FAIL: 'Oops. There was a network error.',
       EMPTY_INPUT: 'Please enter food by name or brand'
@@ -28,11 +28,14 @@ var app = app || {};
      */
     initialize: function() {
 
+      this.focusNewView = false;
+
       this.$jqXHR = null;
 
       this.$searchInput = this.$('#search-input');
       this.$searchList = this.$('#search-list');
       this.$searchListContainer = this.$('#search-list-container');
+      this.$searchListCloseButton = this.$('#search-list-close-btn');
       this.$savedList = this.$('#saved-list');
       this.$savedListContainer = this.$('#saved-list-container');
       this.$calorieTotal = this.$('#calorie-total');
@@ -42,6 +45,7 @@ var app = app || {};
       this.listenTo(app.searchList, 'remove', this.removeSearchList);
       this.listenTo(app.savedList, 'add', this.addSavedItemView);
       this.listenTo(app.savedList, 'update', this.renderCalorieTotal);
+      this.listenTo(app.savedList, 'remove', this.focusLastItem);
       this.listenTo(app.savedList, 'reset', this.renderCalorieTotal);
       this.listenTo(app.eventBus, 'selectSearchItem', this.selectSearchItem);
 
@@ -84,13 +88,37 @@ var app = app || {};
      * Adds a view for the provided food item model.
      */
     addSavedItemView: function(foodItem) {
+      var self = this;
+
       if (!this.fetching) {
         var view = new app.SavedItemView({model: foodItem});
         var $el = view.render().$el;
 
         $el.hide();
         this.$savedList.append($el);
-        $el.show(300);
+
+        $el.show(300, function() {
+          if (self.focusNewView) {
+            this.focus();
+            self.focusNewView = false;
+          }
+        });
+      }
+
+    },
+
+    /**
+     * Moves the focus to last item in saved list, or the container if the
+     * list is empty.
+     */
+    focusLastItem: function() {
+      var $lastItem = this.$savedList.children('.saved-list-item').last();
+
+      if ($lastItem.length !== 0) {
+        $lastItem.focus();
+      } else {
+        // Focus to somewhere meaningful
+        this.$savedListContainer.focus();
       }
     },
 
@@ -208,6 +236,9 @@ var app = app || {};
       if (this.$searchListContainer.css('display') === 'none') {
         this.$searchListContainer.show();
       }
+
+      // Put focus into the dialog
+      this.$searchListCloseButton.focus();
     },
 
     /**
@@ -223,6 +254,9 @@ var app = app || {};
      * model to the saved list.
      */
     selectSearchItem: function(view) {
+      // Focus to the list to indciate the change to screen readers
+      this.focusNewView = true;
+
       // Remove the model from the search list.
       var model = app.searchList.remove(view.model);
 
@@ -231,6 +265,7 @@ var app = app || {};
       app.savedList.create(model);
 
       this.removeSearchList();
+
     },
 
     /**
@@ -242,6 +277,16 @@ var app = app || {};
       this.$searchListContainer.hide();
 
       this.$savedListContainer.show();
+    },
+
+    /**
+     * Handles click on the close button in the search list.
+     */
+    searchCloseButtonClick: function(event) {
+      this.removeSearchList();
+
+      // Move the focus somewhere meaningful.
+      this.$searchInput.focus();
     }
 
   });

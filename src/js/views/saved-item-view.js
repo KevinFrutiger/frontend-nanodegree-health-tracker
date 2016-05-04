@@ -18,6 +18,10 @@ var app = app || {};
       'click .remove-item': 'removeMe'
     },
 
+    attributes: {
+      'tabindex': '-1' // Allows us to set focus when needed
+    },
+
     initialize: function() {
       this.listenTo(this.model, 'change', this.render);
     },

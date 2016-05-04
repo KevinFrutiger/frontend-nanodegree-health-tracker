@@ -24,11 +24,11 @@
     </header>
 
     <main id="main" role="main">
-      <div id="search-list-container">
-        <button id="search-list-close-btn" type="button" class="close-list" aria-label="Close search results list"><span aria-hidden="true">&times;</span></button>
+      <div id="search-list-container" role="dialog" aria-label="Search results. Select an item from the list to save.">
+        <button id="search-list-close-btn" type="button" class="close-list" aria-label="Close search results"><span aria-hidden="true">&times;</span></button>
         <ul id="search-list"></ul>
       </div>
-      <section id="saved-list-container">
+      <section id="saved-list-container" tabindex="-1">
         <h2>Today’s calories</h2>
         <table class="saved-list-table">
           <thead><tr><th>Total:</th><th id="calorie-total" class="calories">…</th><th class="remove-item"></th></tr></thead>
@@ -40,7 +40,7 @@
 
   <!-- Templates -->
   <script type="text/templates" id="saved-item-template">
-    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button type="button" class="remove-item" aria-label="Remove food item"><span aria-hidden="true">&times;</span></button></td>
+    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories" aria-label="<%= calories.toFixed() %> calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button type="button" class="remove-item" aria-label="Remove food item"><span aria-hidden="true">&times;</span></button></td>
   </script>
 
   <script type="text/templates" id="search-item-template">
