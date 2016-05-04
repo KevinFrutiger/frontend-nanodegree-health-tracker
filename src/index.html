@@ -23,28 +23,28 @@
       </div>
     </header>
 
-    <section id="main">
-      <div id="search-list-container">
+    <main id="main" role="main">
+      <div id="search-list-container" aria-label="Hello there">
         <button id="search-list-close-btn" type="button" class="close-list" aria-label="Close search results list"><span aria-hidden="true">&times;</span></button>
         <ul id="search-list"></ul>
       </div>
-      <div id="saved-list-container">
+      <section id="saved-list-container">
         <h2>Today’s calories</h2>
         <table class="saved-list-table">
           <thead><tr><th>Total:</th><th id="calorie-total" class="calories">…</th><th class="remove-item"></th></tr></thead>
           <tbody id="saved-list"></tbody>
         </table>
-      </div>
+      </section>
     </section>
-  </section>
+  </main>
 
   <!-- Templates -->
   <script type="text/templates" id="saved-item-template">
-    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button id="remove" type="button" class="remove-item" aria-label="Remove food item button">&times;</button></td>
+    <td><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span> (<% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span>&nbsp;<span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %>)</td><td class="calories"><%= calories.toFixed() %></td><td class="remove-item-cell"><button type="button" class="remove-item" aria-label="Remove food item"><span aria-hidden="true">&times;</span></button></td>
   </script>
 
   <script type="text/templates" id="search-item-template">
-    <p><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span></p><p><% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span> <span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %></p>
+    <button type="button" class="save-item"><span class="name-content"><span class="brand-name"><%= brand %></span> <span class="food-name"><%= name %></span></span><span class="size-content"><% (serving_size_qty) ? print('<span class="serving-size">' + serving_size_qty + '</span> <span class="serving-unit">' + serving_size_unit + '</span>') : print('<span class="serving-size">1</span> <span class="serving-unit">serving</span>'); %></span></button>
   </script>
 
   <!-- jQuery, Underscore, Backbone, Backbone.LocalStorage -->

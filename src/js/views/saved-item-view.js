@@ -15,7 +15,7 @@ var app = app || {};
     template: _.template($('#saved-item-template').html()),
 
     events: {
-      'click #remove': 'removeMe'
+      'click .remove-item': 'removeMe'
     },
 
     initialize: function() {

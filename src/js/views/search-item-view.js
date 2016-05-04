@@ -15,8 +15,8 @@ var app = app || {};
     template: _.template($('#search-item-template').html()),
 
     events: {
-      'click': 'select',
-      'keypress': 'select'
+      'click .save-item': 'select',
+      'keypress .save-item': 'select'
     },
 
     initialize: function() {
@@ -24,9 +24,6 @@ var app = app || {};
     },
 
     render: function() {
-      // Allow keyboard users to focus the el, in document order.
-      this.$el.prop('tabindex', '0');
-
       this.$el.html(this.template(this.model.attributes));
 
       return this;
