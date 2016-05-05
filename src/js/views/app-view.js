@@ -20,7 +20,7 @@ var app = app || {};
       DEFAULT: 'Enter name or brand',
       AJAX_IN_PROGRESS: 'Searching...',
       AJAX_FAIL: 'Oops. There was a network error.',
-      EMPTY_INPUT: 'Please enter food by name or brand'
+      EMPTY_INPUT: 'Please enter name or brand'
     },
 
     /**
