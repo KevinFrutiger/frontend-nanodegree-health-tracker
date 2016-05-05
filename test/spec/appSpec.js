@@ -98,6 +98,10 @@ $(function() {
 
           done();
         });
+
+        /* Note: While running these tests, focus automtically goes to input
+           field and that's the activeElement. So can't actually test if close
+          button causes through deliberate coding. */
       });
     });
 
@@ -112,7 +116,8 @@ $(function() {
 
           setTimeout(function() {
             prevSavedListLength = $('.saved-list-item').length;
-            $('.search-list-item').first().trigger('click');
+
+            $('.search-list-item').first().children('.save-item').trigger('click');
             done();
           }, 1000);
         }, 3000);
@@ -147,6 +152,10 @@ $(function() {
         done();
 
       }, 5000);
+
+      /* Note: Tried to test for focus on last item, but activeElement gets
+         set to the input field and doesn't change, even though visual
+         indicator switches to the last item */
 
     });
 
