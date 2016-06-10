@@ -1,6 +1,6 @@
 # Health Tracker project
 
-<a href="http://kevinfrutiger.github.io/frontend-nanodegree-health-tracker/" target="_blank">View the live app</a>
+<a href="https://kevinfrutiger.github.io/frontend-nanodegree-health-tracker/" target="_blank">View the live app</a>
 
 (Note: Items selected are stored in your browser's Local Storage.)
 
@@ -8,7 +8,7 @@ This was an optional seventh project for the _Front-End Web Developer Nanodegree
 
 ## Running the application
 
-You can run the application [here](http://kevinfrutiger.github.io/frontend-nanodegree-health-tracker/).
+You can run the application [here](https://kevinfrutiger.github.io/frontend-nanodegree-health-tracker/).
 
 ### Running locally
 
